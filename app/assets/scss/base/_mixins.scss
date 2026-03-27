@@ -1,0 +1,278 @@
+// Скелетон
+@mixin skeleton($duration: 2s) {
+	&:after{
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: #F2F3F5;
+		border-radius: 5px;
+    background-image: linear-gradient(to right,#edeef1 0%,#edeef1 10%,#f6f7f8 25%, #edeef1 40%,#edeef1 50%,#edeef1 60%,#f6f7f8 75%, #edeef1 90%,#edeef1 100%);
+    width: 200%;
+    backface-visibility: hidden;
+    perspective: 1000;
+		animation: skeletonAnim $duration infinite linear;
+	}
+}
+
+@keyframes skeletonAnim{
+	from{
+    transform: translateX(-50%);
+	}
+
+	to{
+    transform: translateX(0%);
+	}
+}
+
+// Clearfix
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Абсолютное центрирование
+@mixin center() {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+// Сокращение текста
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Сокращение текста
+@mixin line-overflow($line) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@function rgba2($var,$opacity){
+  @return rgba(red($var),green($var),blue($var),$opacity);
+}
+
+// Ретина изображения
+@mixin img-retina($file-1x, $file-2x, $width-1x, $height-1x) {
+  background-image: url($file-1x);
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+    background-image: url($file-2x);
+    background-size: $width-1x $height-1x;
+  }
+}
+
+// Placeholder
+@mixin custom_placeholder {
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+// hardware acceleration
+@mixin hardware($backface: true, $perspective: 1000) {
+    @if $backface {
+        backface-visibility: hidden;
+    }
+    perspective: $perspective;
+}
+
+// Оверлей
+@mixin overlay(){
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// Видимый скролл
+@mixin visible-scroll(){
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  &::-webkit-scrollbar:vertical {
+    width: 9px;
+  }
+  &::-webkit-scrollbar:horizontal {
+    height: 9px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    // border: 2px solid white;
+    background-color: rgba(0, 0, 0, .5);
+  }
+}
+
+// Скрытый скролл
+@mixin hidden-scroll(){
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  &::-webkit-scrollbar:vertical {
+    width: 5px;
+  }
+  &::-webkit-scrollbar:horizontal {
+    height: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #8F91A3;
+  }
+}
+
+@mixin custom-scrollbar2 {
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-thumb {
+    width: 15px;
+    border-radius: 10px;
+    border: 5px solid transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 0 10px rgba(#5F6171, .8);
+  }
+}
+
+// Увеличенное поле клика
+@mixin touch-area-fix($width: 200%, $height: 200%){
+  &:before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $width;
+    height: $height;
+    transform: translate3d(-50%, -50%, 0);
+    cursor: pointer;
+  }
+}
+
+// Убираем тени в инпутах для ios
+@mixin no-box-shadow(){
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+// Высчитавыние размера от rem
+@function rem($num){
+  @return ($num*100/16/100)+rem;
+}
+
+// Высчитавыние размера от vw
+@function vw($num){
+  @return ($num*100/1680)+vw;
+}
+
+// Вычисляем проценты в таблице
+@mixin table-percent($fullSize, $needSize){
+  width: $needSize*100%/$fullSize;
+}
+
+// Делаем блок внутри контейнера на всю ширину экрана
+@mixin full-width() {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+// Треугольники
+@mixin triangle($direction, $size: 6px, $color: #222){
+  content: '';
+  display: block;
+  position: absolute;
+  height: 0; width: 0;
+  @if ($direction == 'up'){
+    border-bottom: $size solid $color;
+    border-left: 1/2*$size solid transparent;
+    border-right: 1/2*$size solid transparent;
+  }
+  @else if ($direction == 'down'){
+    border-top: $size solid $color;
+    border-left: 1/2*$size solid transparent;
+    border-right: 1/2*$size solid transparent;
+  }
+  @else if ($direction == 'left'){
+    border-top: 1/2*$size solid transparent;
+    border-bottom: 1/2*$size solid transparent;
+    border-right: $size solid $color;
+  }
+  @else if ($direction == 'right'){
+    border-top: 1/2*$size solid transparent;
+    border-bottom: 1/2*$size solid transparent;
+    border-left: $size solid $color;
+  }
+}
+
+// Фикс 100vh
+@mixin vh-fix() {
+  @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+    height: 1024px;
+  }
+  @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+    height: 768px;
+  }
+  @media all and (device-width: 320px) and (device-height: 480px) and (orientation:portrait){
+    height: 480px;
+  }
+  @media all and (device-width: 480px) and (device-height: 320px) and (orientation:landscape){
+    height: 320px;
+  }
+  @media all and (device-width: 320px) and (device-height: 568px) and (orientation:portrait){
+    height: 568px;
+  }
+  @media all and (device-width: 568px) and (device-height: 320px) and (orientation:landscape){
+    height: 320px;
+  }
+}
+
+@mixin max($resolution) {
+  @media (max-width: ($resolution - 1)) {
+    @content;
+  }
+}
