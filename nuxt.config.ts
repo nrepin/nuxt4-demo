@@ -14,7 +14,7 @@ export default defineNuxtConfig({
       ]
     },
   },
-  router: {
-    base: '/workflows/'
+  app: {
+    baseURL: '/nuxt4-demo/' // важно для корректных путей
   },
 })
