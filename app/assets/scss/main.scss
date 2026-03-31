@@ -1,7 +1,7 @@
 @charset "utf-8";
 
-@import "normalize";
-@import "./base/mixins";
+@use "normalize";
+@use "./base/mixins";
 
 $font: "Noto Sans", sans-serif;
 $blue: #2A77FF;
@@ -968,7 +968,7 @@ body {
 		outline: none;
 		color: #242424;
 
-		@include custom_placeholder {
+		@include mixins.custom_placeholder {
 			color: var(--grey-light-active, #AFAFAF);
 		}
 
@@ -1084,7 +1084,7 @@ body {
 			z-index: 1;
 
 			& {
-				@include custom-scrollbar2;
+				@include mixins.custom-scrollbar2;
 			}
 
 			&.double {
@@ -1109,7 +1109,7 @@ body {
 				overflow: auto;
 
 				& {
-					@include custom-scrollbar2;
+					@include mixins.custom-scrollbar2;
 				}
 			}
 
@@ -1138,7 +1138,7 @@ body {
 					max-height: 110px;
 
 					& {
-						@include custom-scrollbar2;
+						@include mixins.custom-scrollbar2;
 					}
 				}
 
@@ -3086,7 +3086,7 @@ body {
 		overflow: auto;
 
 		& {
-			@include custom-scrollbar;
+			@include mixins.custom-scrollbar;
 		}
 
 		.stable {
@@ -3611,7 +3611,7 @@ body {
 		}
 
 		.text-overflow {
-			@include text-overflow;
+			@include mixins.text-overflow;
 		}
 	}
 
@@ -3663,7 +3663,7 @@ body {
 
 		&:read-only,
 		&.readonly {
-			@include text-overflow;
+			@include mixins.text-overflow;
 		}
 
 		&.invalid {
@@ -3671,7 +3671,7 @@ body {
 			background-color: #FDEEEE;
 		}
 
-		@include custom_placeholder {
+		@include  mixins.custom_placeholder {
 			color: var(--grey-light-active, #A8A8A8);
 		}
 	}
@@ -3731,7 +3731,7 @@ body {
 				overflow: auto;
 
 				& {
-					@include custom-scrollbar;
+					@include mixins.custom-scrollbar;
 				}
 
 				.stable {
@@ -3755,7 +3755,7 @@ body {
 		overflow: auto;
 
 		& {
-			@include custom-scrollbar;
+			@include mixins.custom-scrollbar;
 		}
 
 		&_full {
@@ -3774,7 +3774,7 @@ body {
 				left: 0;
 
 				& {
-					@include custom-scrollbar;
+					@include mixins.custom-scrollbar;
 				}
 
 				&__head {
@@ -3906,7 +3906,7 @@ body {
 		z-index: 1;
 
 		& {
-			@include custom-scrollbar2;
+			@include mixins.custom-scrollbar2;
 		}
 
 		&-item {
@@ -4115,7 +4115,7 @@ body {
 		flex-grow: 1;
 		flex-shrink: 1;
 
-		@include max(1500px) {
+		@include mixins.max(1500px) {
 			max-width: calc(100% - 350px);
 
 			&.mw100 {
@@ -4325,7 +4325,7 @@ body {
 
 	&:before {
 		content: '';
-		@include overlay;
+		@include mixins.overlay;
 		background-image: url(~/assets/img/preload.svg);
 		background-size: 39px;
 		background-position: center center;
@@ -4339,7 +4339,7 @@ body {
 
 	&:before {
 		content: '';
-		@include overlay;
+		@include mixins.overlay;
 		background-image: url(~/assets/img/preload.svg);
 		background-size: 128px;
 		background-position: center center;

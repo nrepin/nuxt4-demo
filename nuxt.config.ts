@@ -14,4 +14,7 @@ export default defineNuxtConfig({
       ]
     },
   },
+  router: {
+    base: '/workflows/'
+  },
 })
