@@ -1,1 +1,0 @@
-export { default } from "file:///C:/Atlas/Project/nuxt4-demo/demo/node_modules/@nuxt/vite-builder/dist/vite-node-entry.mjs"
